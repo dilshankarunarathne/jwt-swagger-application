@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .anyRequest().authenticated()
+                                .anyRequest().authenticated()   // TODO matches were not checked
                 )
                 .formLogin(withDefaults());
         return http.build();
