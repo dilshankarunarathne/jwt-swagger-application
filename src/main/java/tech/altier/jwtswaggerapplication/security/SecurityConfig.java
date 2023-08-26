@@ -17,7 +17,6 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/public/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults());
