@@ -1,6 +1,8 @@
 package tech.altier.jwtswaggerapplication.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,20 +10,29 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tech.altier.jwtswaggerapplication.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public JwtUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Retrieve the user from your database (replace with your logic)
-        tech.altier.jwtswaggerapplication.jpa.User userEntity = userRepository.findByUsername(username)
+        YourUserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
-        // Map your user entity to UserDetails
-        return new User(userEntity.getUsername(), userEntity.getPassword(), /* add authorities/roles */);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        // Add authorities/roles here based on your userEntity
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER")); // Example role
+
+        return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }
 }
 
