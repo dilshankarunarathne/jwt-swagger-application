@@ -24,7 +24,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        YourUserEntity userEntity = userRepository.findByUsername(username)
+        tech.altier.jwtswaggerapplication.jpa.User userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
