@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.your.package.controller"))
+                .apis(RequestHandlerSelectors.basePackage("tech.altier.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -26,7 +26,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Your API Documentation")
-                .description("Description of your API")
+                .description("Sample API documentation for Spring Boot JWT Swagger Application")
                 .version("1.0.0")
                 .build();
     }
