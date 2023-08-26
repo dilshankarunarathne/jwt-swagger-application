@@ -1,2 +1,3 @@
 # jwt-swagger-application
- An application that demonstrates JWT and Swagger
+
+An application that demonstrates JWT and Swagger
