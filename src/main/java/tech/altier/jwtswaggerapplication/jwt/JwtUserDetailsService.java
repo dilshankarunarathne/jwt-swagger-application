@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tech.altier.repository.UserRepository;
+import tech.altier.jwtswaggerapplication.repository.UserRepository;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -17,7 +17,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Retrieve the user from your database (replace with your logic)
-        YourUserEntity userEntity = userRepository.findByUsername(username)
+        tech.altier.jwtswaggerapplication.jpa.User userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         // Map your user entity to UserDetails
