@@ -1,4 +1,4 @@
-package tech.altier.jwtswaggerapplication.security;
+package tech.altier.jwtswaggerapplication.jwt;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
